@@ -27,6 +27,8 @@ public class mod_ElementalCreepers extends NetworkMod
     @MLProp
     public static int lightCreeperSpawn = 5;
     @MLProp
+    public static boolean lightCreeperSpawnNetherOnly = false;
+    @MLProp
     public static int darkCreeperSpawn = 5;
     @MLProp
     public static int reverseCreeperSpawn = 3;
@@ -152,7 +154,14 @@ public class mod_ElementalCreepers extends NetworkMod
 
         if (lightCreeperSpawn > 0)
         {
-            ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.MONSTER);
+            if (lightCreeperSpawnNetherOnly) 
+            {
+                ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.MONSTER, new BiomeBase[] {BiomeBase.HELL});
+            } 
+            else 
+            {
+                ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.MONSTER);
+            }
         }
 
         if (darkCreeperSpawn > 0)

@@ -18,6 +18,7 @@ public class mod_ElementalCreepers extends NetworkMod {
 	@MLProp public static int friendlyCreeperSpawn = 1;
 	@MLProp public static int illusionCreeperSpawn = 2;
 	@MLProp public static int lightCreeperSpawn = 5;
+	@MLProp public static boolean lightCreeperSpawnNetherOnly = false;
 	@MLProp public static int darkCreeperSpawn = 5;
 	@MLProp public static int reverseCreeperSpawn = 3;
 	
@@ -87,7 +88,12 @@ public class mod_ElementalCreepers extends NetworkMod {
 		if(magmaCreeperSpawn > 0) ModLoader.addSpawn("MagmaCreeper", magmaCreeperSpawn, 1, 2, EnumCreatureType.monster, new BiomeGenBase[] {BiomeGenBase.hell});
 		if(friendlyCreeperSpawn > 0) ModLoader.addSpawn("FriendlyCreeper", friendlyCreeperSpawn, 1, 1, EnumCreatureType.creature);
 		if(illusionCreeperSpawn > 0) ModLoader.addSpawn("IllusionCreeper", illusionCreeperSpawn, 1, 1, EnumCreatureType.monster);
-		if(lightCreeperSpawn > 0) ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.monster);
+		if(lightCreeperSpawn > 0) { 
+			if (lightCreeperSpawnNetherOnly)
+				ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] {BiomeGenBase.hell});
+			else
+				ModLoader.addSpawn("LightCreeper", lightCreeperSpawn, 1, 3, EnumCreatureType.monster);
+		}
 		if(darkCreeperSpawn > 0) ModLoader.addSpawn("DarkCreeper", darkCreeperSpawn, 1, 3, EnumCreatureType.monster);
 		if(reverseCreeperSpawn > 0) ModLoader.addSpawn("ReverseCreeper", reverseCreeperSpawn, 1, 3, EnumCreatureType.monster);
 	}
